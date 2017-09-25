@@ -1,0 +1,4 @@
+services:
+    app.subscription:
+        class:     AppBundle\Service\SubscriptionService
+        arguments: ["@doctrine.orm.entity_manager", "@swiftmailer.mailer"]

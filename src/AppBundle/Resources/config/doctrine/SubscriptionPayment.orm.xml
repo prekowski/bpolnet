@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\SubscriptionPayment" table="subscription_payment">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="subscriptionId" type="integer" column="subscription_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="chargedAmount" type="integer" column="charged_amount" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="date" type="date" column="date" nullable="false"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+    <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
+  </entity>
+</doctrine-mapping>

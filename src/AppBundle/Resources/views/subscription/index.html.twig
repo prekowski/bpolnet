@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subscriptions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Userid</th>
+                <th>Subscriptionshippingaddressid</th>
+                <th>Subscriptionbillingaddressid</th>
+                <th>Status</th>
+                <th>Subscriptionpackid</th>
+                <th>Startedat</th>
+                <th>Updatedat</th>
+                <th>Createdat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subscription in subscriptions %}
+            <tr>
+                <td><a href="{{ path('subscription_show', { 'id': subscription.id }) }}">{{ subscription.userId }}</a></td>
+                <td>{{ subscription.subscriptionShippingAddressId }}</td>
+                <td>{{ subscription.subscriptionBillingAddressId }}</td>
+                <td>{{ subscription.status }}</td>
+                <td>{{ subscription.subscriptionPackId }}</td>
+                <td>{% if subscription.startedAt %}{{ subscription.startedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if subscription.updatedAt %}{{ subscription.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if subscription.createdAt %}{{ subscription.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ subscription.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('subscription_show', { 'id': subscription.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('subscription_edit', { 'id': subscription.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('subscription_new') }}">Create a new subscription</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subscription</h1>
+
+    {% for message in messages %}
+        <div style="background: darkseagreen">{{ message }}</div>
+    {% endfor %}
+
+    {% for error in errors %}
+        <div style="background: red">{{ error }}</div>
+    {% endfor %}
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Userid</th>
+                <td>{{ subscription.userId }}</td>
+            </tr>
+            <tr>
+                <th>Subscriptionshippingaddressid</th>
+                <td>{{ subscription.subscriptionShippingAddressId }}</td>
+            </tr>
+            <tr>
+                <th>Subscriptionbillingaddressid</th>
+                <td>{{ subscription.subscriptionBillingAddressId }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ subscription.status }}</td>
+            </tr>
+            <tr>
+                <th>Subscriptionpackid</th>
+                <td>{{ subscription.subscriptionPackId }}</td>
+            </tr>
+            <tr>
+                <th>Startedat</th>
+                <td>{% if subscription.startedAt %}{{ subscription.startedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if subscription.updatedAt %}{{ subscription.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if subscription.createdAt %}{{ subscription.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ subscription.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a style="color:red" href="{{ path('subscription_payment', { 'id': subscription.id }) }}">Active Subscription</a>
+        </li>
+        <li>
+            <a href="{{ path('subscription_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('subscription_edit', { 'id': subscription.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
